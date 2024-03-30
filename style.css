@@ -1,0 +1,46 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.box1{
+    max-width: 1280px;
+    width: 100%;
+    height: 80vh;
+    margin: 0 auto;
+    background: url('./img/IMAGEBOX1.png') no-repeat center/cover ;
+}
+.menu{
+    max-width: 1280px;
+    width: 100%;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 2px solid;
+    margin: 0 auto;
+}
+.aa{
+    display: flex;
+    gap: 20px;
+}
+.aa > a{
+    text-decoration: none;
+    color: black;
+}
+#Karzina{
+    cursor: pointer;
+}
+#modal{
+    height: 300px;
+    width: 350px;
+    position: relative;
+    border: none;
+    border-radius:7px ;
+}
+.close{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+}
