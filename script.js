@@ -91,6 +91,7 @@ buttonCloseModal.textContent = 'x'
 
 ModalDiv.appendChild(buttonCloseModal)
 
+
 bgModalDiv.appendChild(ModalDiv);
 // modal Element ------------------------------
 svgElement.addEventListener('click', function() {
@@ -101,45 +102,103 @@ buttonCloseModal.addEventListener('click', function() {
     bgModalDiv.style.display = 'none'
 })
 
+const box2Div = document.createElement('div');
+
+root.appendChild(box2Div)
+
+const titleBox2 = document.createElement('h1');
+titleBox2.textContent = 'Каталог товаров'
+
+box2Div.appendChild(titleBox2)
+
+const contentBox2Div = document.createElement('div');
+
+box2Div.appendChild(contentBox2Div)
 
 
 
+async function fetchDataForAI() {
+    try {
+        const response = await fetch('https://126b63f3395fce52.mokky.dev/content');
+        if (!response.ok) {
+            throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error.message);
+        throw error;
+    }
+}
 
-// async function fetchDataForAI() {
-//     try {
-//         const response = await fetch('https://126b63f3395fce52.mokky.dev/user');
-//         if (!response.ok) {
-//             throw new Error('Failed to fetch data');
-//         }
-//         const data = await response.json();
-//         return data;
-//     } catch (error) {
-//         console.error('Error fetching data:', error.message);
-//         throw error;
-//     }
-// }
+// Пример использования:
+async function processDataForAI() {
+    try {
+        const data = await fetchDataForAI();
+       
+        console.log('Data for AI:', data);
+        FunGin(data)
+    } catch (error) {
+        console.error('Error processing data for AI:', error.message);
+    }
+}
 
-// // Пример использования:
-// async function processDataForAI() {
-//     try {
-//         const data = await fetchDataForAI();
-//        
-//         console.log('Data for AI:', data);
-//         FunGin(data)
-//     } catch (error) {
-//        
-//         console.error('Error processing data for AI:', error.message);
-//     }
-// }
+processDataForAI();
 
-// processDataForAI();
+function FunGin(arr){
+    arr.map((el) => {
+        const comContentBox2Div = document.createElement('div');
+        const comContentBox2Img = document.createElement('img');
+        const comContentBox2Title = document.createElement('h3');
+        const comContentBox2Price = document.createElement('p');
+        const comContentBox2Buy = document.createElement('button');
 
-// function FunGin(arr){
-//     arr.map((el) => {
-//         let Vopros = el.Vopros
-//         console.log(Vopros);
-//     })
-// }
+        comContentBox2Div.classList.add('comProduct')
+
+        comContentBox2Div.id = `Product${el.id}`
+        comContentBox2Img.src = el.img
+        comContentBox2Img.alt = 'Product'
+        comContentBox2Title.textContent = el.title
+        comContentBox2Price.textContent = `Price: ${el.price}$`
+        comContentBox2Buy.textContent = "Buy" 
+
+        comContentBox2Div.appendChild(comContentBox2Img);
+        comContentBox2Div.appendChild(comContentBox2Title);
+        comContentBox2Div.appendChild(comContentBox2Price);
+        comContentBox2Div.appendChild(comContentBox2Buy);
+
+        contentBox2Div.appendChild(comContentBox2Div)
+        console.log(comContentBox2Div);
+
+        //style css
+            comContentBox2Div.style.width = '210px'
+            comContentBox2Div.style.height = '300px'
+            comContentBox2Div.style.padding = '10px'
+            comContentBox2Div.style.display = 'flex'
+            comContentBox2Div.style.justifyContent = 'center'
+            comContentBox2Div.style.alignItems = 'center'
+            comContentBox2Div.style.flexDirection = 'column'
+            comContentBox2Div.style.background = '#F8F9FA'
+
+            comContentBox2Img.style.width = '180px'
+
+            comContentBox2Price.style.margin = '0'
+
+            comContentBox2Buy.style.margin = '10px 0'
+            comContentBox2Buy.style.cursor = 'pointer'
+        //style css
+        comContentBox2Buy.addEventListener('click', function() {
+            // ModalDiv
+            const KarzinaComponentTitleProduct = document.createElement('h6');
+            KarzinaComponentTitleProduct.textContent = el.title;
+
+            ModalDiv.appendChild(KarzinaComponentTitleProduct)
+        })
+        
+    })
+}
+
+
 
 //---------------------голосовой помошник
 
@@ -176,15 +235,7 @@ function startRecording() {
         const result = event.results[event.results.length - 1][0].transcript;
         recordedText += result;
         console.log('Recorded text: ' + recordedText);
-        // if (recordedText.trim() == 'Привет') { // Проверка условия, пример
-        // playSound();
-        // }
-        // if (recordedText.trim() == 'как ты') { // Проверка условия, пример
-        // playSound2();
-        // }
-        // if (recordedText.trim() == 'Кто тебя создал') { // Проверка условия, пример
-        // playSound3();
-        // }
+        
         switch(recordedText.trim()){
             case 'Привет':
                 playSound();
@@ -247,6 +298,8 @@ document.head.appendChild(style);
 
 document.body.style.margin = 0;
 document.body.style.padding = 0;
+document.body.style.paddingTop = '56px';
+
 document.body.style.fontFamily = '"Roboto", sans-serif'
 
 box1Div.style.maxWidth = '1280px'
@@ -279,16 +332,20 @@ buttonLeft.style.border = '1px solid '
 buttonLeft.style.cursor = 'pointer'
 
 
-menuDiv.style.maxWidth = '1220px'
-menuDiv.style.width = '100%'
+
+menuDiv.style.width = '76%'
 menuDiv.style.height = '56px'
+menuDiv.style.position = 'fixed'
 menuDiv.style.display = 'flex'
 menuDiv.style.alignItems = 'center'
 menuDiv.style.justifyContent = 'space-between'
-menuDiv.style.paddingRight = '30px'
-menuDiv.style.paddingLeft = '30px'
-menuDiv.style.borderBottom = '2px solid'
-menuDiv.style.margin = '0 auto'
+menuDiv.style.padding = ' 0 12%'
+menuDiv.style.top = '0'
+menuDiv.style.backdropFilter = 'blur(50px)'
+menuDiv.style.background = '#0081ac30'
+
+menuDiv.style.boxShadow = '6px 10px 30px -20px #000'
+// box-shadow: 6px 28px 49px -37px rgba(0,0,0,0.75);
 
 aaDiv.style.display = 'flex'
 aaDiv.style.gap = '20px'
@@ -303,6 +360,7 @@ contactsLink.style.color = '#000'
 svgElement.style.cursor = 'pointer'
 
 bgModalDiv.style.position = 'absolute'
+bgModalDiv.style.position = 'fixed'
 bgModalDiv.style.background = '#3a3a3a44'
 bgModalDiv.style.display = 'flex'
 bgModalDiv.style.alignItems = 'center'
@@ -319,6 +377,7 @@ ModalDiv.style.backdropFilter = 'blur(20px)'
 ModalDiv.style.height = '400px'
 ModalDiv.style.width = '500px'
 ModalDiv.style.position = 'relative'
+
 
 buttonCloseModal.style.position = 'absolute'
 buttonCloseModal.style.top = '10px'
@@ -337,6 +396,25 @@ buttonAi.style.background = '#bbebf9'
 buttonAi.style.padding = '10px 12px'
 buttonAi.style.fontSize = '20px'
 buttonAi.style.cursor = 'pointer'
+
+box2Div.style.width = '100%'
+box2Div.style.height = '100vh'
+
+titleBox2.style.width = '150px'
+titleBox2.style.color = '#3C4043'
+titleBox2.style.margin = '50px auto'
+titleBox2.style.fontSize = '16px'
+titleBox2.style.fontWeight = '400'
+
+contentBox2Div.style.maxWidth = '1280px'
+contentBox2Div.style.width = '100%'
+contentBox2Div.style.margin = '0 auto'
+contentBox2Div.style.display = 'flex'
+contentBox2Div.style.alignItems = 'top'
+contentBox2Div.style.justifyContent = 'center'
+contentBox2Div.style.flexWrap = 'wrap'
+contentBox2Div.style.gap = '40px 20px'
+
 
 
 //style css
