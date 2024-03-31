@@ -3,14 +3,14 @@ body{
     padding: 0;
 }
 
-.box1{
+/* .box1{
     max-width: 1280px;
     width: 100%;
     height: 80vh;
     margin: 0 auto;
     background: url('./img/IMAGEBOX1.png') no-repeat center/cover ;
-}
-.menu{
+} */
+/* .menu{
     max-width: 1280px;
     width: 100%;
     height: 56px;
@@ -19,25 +19,19 @@ body{
     justify-content: space-around;
     border-bottom: 2px solid;
     margin: 0 auto;
-}
-.aa{
+} */
+/* .aa{
     display: flex;
     gap: 20px;
 }
 .aa > a{
     text-decoration: none;
     color: black;
-}
-#Karzina{
+} */
+/* #Karzina{
     cursor: pointer;
-}
-#modal{
-    height: 300px;
-    width: 350px;
-    position: relative;
-    border: none;
-    border-radius:7px ;
-}
+} */
+
 .close{
     position: absolute;
     right: 20px;
