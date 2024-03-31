@@ -1,41 +1,3 @@
-
-
-
-// style css
-document.body.style.margin = 0;
-document.body.style.padding = 0;
-
-box1Div.style.maxWidth = '1280px'
-box1Div.style.width = '100%'
-box1Div.style.height = '80vh'
-box1Div.style.margin = '0 auto'
-box1Div.style.background = `url('./img/IMAGEBOX1.png') no-repeat center/100%`
-
-menuDiv.style.maxWidth = '1280px'
-menuDiv.style.width = '100%'
-menuDiv.style.height = '56px'
-menuDiv.style.display = 'flex'
-menuDiv.style.alignItems = 'center'
-menuDiv.style.justifyContent = 'space-around'
-menuDiv.style.borderBottom = '2px solid'
-menuDiv.style.margin = '0 auto'
-
-aaDiv.style.display = 'flex'
-aaDiv.style.gap = '20px'
-
-catalogLink.style.textDecoration = 'none'
-catalogLink.style.color = '#000'  
-rulesLink.style.textDecoration = 'none'
-rulesLink.style.color = '#000'      
-contactsLink.style.textDecoration = 'none'
-contactsLink.style.color = '#000'
-
-svgElement.style.cursor = 'pointer'
-
-
-
-
-
 const root = document.getElementById('root');
 
 // Создаем div.menu
@@ -90,10 +52,54 @@ root.appendChild(menuDiv);
 const box1Div = document.createElement('div');
 box1Div.classList.add('box1');
 
+const contentBox1Div = document.createElement('div');
+box1Div.appendChild(contentBox1Div)
+
+const H1ContentBox1 = document.createElement('h1');
+H1ContentBox1.textContent = 'Inhale. \n Gift⁠. \n Exhale.'
+
+contentBox1Div.appendChild(H1ContentBox1)
+
+const PContentBox1 = document.createElement('p');
+PContentBox1.textContent = 'The gifts you need, stress-free. Shop the best of Google with ease.'
+
+contentBox1Div.appendChild(PContentBox1)
+
+const btnDiv = document.createElement('div')
+
+const buttonLeft = document.createElement('button') 
+const buttonRight = document.createElement('button') 
+
+buttonLeft.textContent = 'Browse deals'
+buttonRight.textContent = 'Browse the gift guide'
+
+
+btnDiv.appendChild(buttonLeft)
+btnDiv.appendChild(buttonRight)
+
+contentBox1Div.appendChild(btnDiv)
 
 root.appendChild(box1Div);
 
+const bgModalDiv = document.createElement('div');
+root.appendChild(bgModalDiv)
 
+const ModalDiv = document.createElement('div');
+
+const buttonCloseModal = document.createElement('button');
+buttonCloseModal.textContent = 'x'
+
+ModalDiv.appendChild(buttonCloseModal)
+
+bgModalDiv.appendChild(ModalDiv);
+// modal Element ------------------------------
+svgElement.addEventListener('click', function() {
+    bgModalDiv.style.display = 'flex'
+    
+})
+buttonCloseModal.addEventListener('click', function() {
+    bgModalDiv.style.display = 'none'
+})
 
 
 
@@ -136,6 +142,15 @@ root.appendChild(box1Div);
 // }
 
 //---------------------голосовой помошник
+
+const buttonAi = document.createElement('button');
+buttonAi.textContent = 'AI'
+buttonAi.onmousedown = startRecording
+buttonAi.onmouseup = stopRecording
+buttonAi.setAttribute('id', 'recordButton')
+
+root.appendChild(buttonAi)
+
 let recognition;
 let recordedText = '';
 
@@ -161,19 +176,32 @@ function startRecording() {
         const result = event.results[event.results.length - 1][0].transcript;
         recordedText += result;
         console.log('Recorded text: ' + recordedText);
-        if (recordedText.trim() == 'Привет') { // Проверка условия, пример
-        playSound();
+        // if (recordedText.trim() == 'Привет') { // Проверка условия, пример
+        // playSound();
+        // }
+        // if (recordedText.trim() == 'как ты') { // Проверка условия, пример
+        // playSound2();
+        // }
+        // if (recordedText.trim() == 'Кто тебя создал') { // Проверка условия, пример
+        // playSound3();
+        // }
+        switch(recordedText.trim()){
+            case 'Привет':
+                playSound();
+            break;
+            case 'как ты':
+                playSound2();
+            break;
+            case 'Кто тебя создал':
+                playSound3();
+            break;
         }
-        if (recordedText.trim() == 'как ты') { // Проверка условия, пример
-        playSound2();
-        }
-        if (recordedText.trim() == 'Кто тебя создал') { // Проверка условия, пример
-        playSound3();
-        }
+    
     };
     recognition.start();
+    buttonAi.style.animation = 'pulse 1s infinite';
+
     
-   
 }
 
 
@@ -181,10 +209,137 @@ function startRecording() {
 function stopRecording() {
     if (recognition) {
         recognition.stop();
+        buttonAi.style.animation = '';
+
     }
 }
+// Создаем div
 
 
+// Добавляем стили для анимации
+const style = document.createElement('style');
+style.innerHTML = `
+  @keyframes pulse {
+    0% {
+      background-color: #80a1ac;
+    }
+    50% {
+      background-color: #bbebf9;
+    }
+    100% {
+      background-color: #80a1ac;
+    }
+  }
+  #voiceDiv {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+`;
+document.head.appendChild(style);
+
+
+
+
+
+// style css
+
+
+document.body.style.margin = 0;
+document.body.style.padding = 0;
+document.body.style.fontFamily = '"Roboto", sans-serif'
+
+box1Div.style.maxWidth = '1280px'
+box1Div.style.width = '100%'
+box1Div.style.height = '80vh'
+box1Div.style.margin = '0 auto'
+box1Div.style.background = `url('./img/IMAGEBOX1.png') no-repeat center/100%`
+box1Div.style.display = 'flex'
+box1Div.style.alignItems = 'center'
+box1Div.style.justifyContent = 'center'
+
+contentBox1Div.style.width = '70%'
+contentBox1Div.style.color = '#3C4043'
+
+H1ContentBox1.style.fontSize = '57px'
+H1ContentBox1.style.fontWeight = '400'
+H1ContentBox1.style.width = '316px'
+
+PContentBox1.style.width = '356px'
+
+buttonRight.style.width = '143px'
+buttonRight.style.height = '40px'
+buttonRight.style.background = 'transparent'
+buttonRight.style.border = 'none'
+
+buttonLeft.style.width = '143px'
+buttonLeft.style.height = '40px'
+buttonLeft.style.background = 'transparent'
+buttonLeft.style.border = '1px solid '
+buttonLeft.style.cursor = 'pointer'
+
+
+menuDiv.style.maxWidth = '1220px'
+menuDiv.style.width = '100%'
+menuDiv.style.height = '56px'
+menuDiv.style.display = 'flex'
+menuDiv.style.alignItems = 'center'
+menuDiv.style.justifyContent = 'space-between'
+menuDiv.style.paddingRight = '30px'
+menuDiv.style.paddingLeft = '30px'
+menuDiv.style.borderBottom = '2px solid'
+menuDiv.style.margin = '0 auto'
+
+aaDiv.style.display = 'flex'
+aaDiv.style.gap = '20px'
+
+catalogLink.style.textDecoration = 'none'
+catalogLink.style.color = '#000'  
+rulesLink.style.textDecoration = 'none'
+rulesLink.style.color = '#000'      
+contactsLink.style.textDecoration = 'none'
+contactsLink.style.color = '#000'
+
+svgElement.style.cursor = 'pointer'
+
+bgModalDiv.style.position = 'absolute'
+bgModalDiv.style.background = '#3a3a3a44'
+bgModalDiv.style.display = 'flex'
+bgModalDiv.style.alignItems = 'center'
+bgModalDiv.style.justifyContent = 'center'
+bgModalDiv.style.height = '100vh'
+bgModalDiv.style.width = '100%'
+bgModalDiv.style.zIndex = '1000'
+bgModalDiv.style.display = 'none'
+bgModalDiv.style.top = '0'
+bgModalDiv.style.left = '0'
+
+ModalDiv.style.background = '#3a3a3a44'
+ModalDiv.style.backdropFilter = 'blur(20px)'
+ModalDiv.style.height = '400px'
+ModalDiv.style.width = '500px'
+ModalDiv.style.position = 'relative'
+
+buttonCloseModal.style.position = 'absolute'
+buttonCloseModal.style.top = '10px'
+buttonCloseModal.style.right = '10px'
+buttonCloseModal.style.cursor = 'pointer'
+
+
+buttonAi.style.position = 'fixed'
+buttonAi.style.zIndex = '1000'
+buttonAi.style.right = '10%'
+buttonAi.style.bottom = '15%'
+buttonAi.style.border = '2px solid #0081ac'
+buttonAi.style.borderRadius = '50px'
+buttonAi.style.color = '#0081ac'
+buttonAi.style.background = '#bbebf9'
+buttonAi.style.padding = '10px 12px'
+buttonAi.style.fontSize = '20px'
+buttonAi.style.cursor = 'pointer'
+
+
+//style css
 
 
 
