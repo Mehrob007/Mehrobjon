@@ -7,6 +7,8 @@ body{
     background-color: #0081ac47;
     justify-content: space-between;
     backdrop-filter: blur(20px);
+    transition: all 2s linear;
+    transform: scale(0.8) translateY(-50px);
 }
 /* .box1{
     max-width: 1280px;

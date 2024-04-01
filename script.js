@@ -206,7 +206,9 @@ function FunGin(arr){
             KarzinaComponentPriceProduct.textContent = `Price: ${el.price}$`;
 
             const buttonDeleteKarzina = document.createElement('button');
-            buttonDeleteKarzina.textContent = 'Delete'
+            buttonDeleteKarzina.textContent = 'Delete';
+          
+
 
             leftComponentKarzina.appendChild(KarzinaComponentImgProduct) 
             leftComponentKarzina.appendChild(KarzinaComponentTitleProduct)
@@ -215,6 +217,12 @@ function FunGin(arr){
             TovarInKarziDiv.appendChild(buttonDeleteKarzina)
 
             contentModal.appendChild(TovarInKarziDiv)
+
+            buttonDeleteKarzina.addEventListener('click', function(){
+                TovarInKarziDiv.style.transform = 'scale(0.8) translateY(-100px)'
+                TovarInKarziDiv.style.transition = ' all 0.1s linear'
+                setTimeout(() => contentModal.removeChild(TovarInKarziDiv), 200)
+            })
             //style css
                 TovarInKarziDiv.style.width = '400px'
                 TovarInKarziDiv.style.height = '70px'
@@ -238,6 +246,7 @@ function FunGin(arr){
         
     })
 }
+
 
 
 
@@ -329,6 +338,8 @@ style.innerHTML = `
   }
 `;
 document.head.appendChild(style);
+
+const box3FooterDiv = document.createElement('div');
 
 
 
@@ -433,6 +444,7 @@ contentModal.style.alignItems = 'center'
 contentModal.style.justifyContent = 'top'
 contentModal.style.overflowY = 'scroll'
 
+
 buttonCloseModal.style.position = 'absolute'
 buttonCloseModal.style.top = '10px'
 buttonCloseModal.style.right = '10px'
@@ -468,6 +480,12 @@ contentBox2Div.style.alignItems = 'top'
 contentBox2Div.style.justifyContent = 'center'
 contentBox2Div.style.flexWrap = 'wrap'
 contentBox2Div.style.gap = '40px 20px'
+
+box3FooterDiv.style.height = '40vh'
+box3FooterDiv.style.width = '100%'
+box3FooterDiv.style.background = '#333'
+box3FooterDiv.style.position = 'absolute'
+box3FooterDiv.style.bottom = '0'
 
 
 
