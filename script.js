@@ -89,7 +89,10 @@ const ModalDiv = document.createElement('div');
 const buttonCloseModal = document.createElement('button');
 buttonCloseModal.textContent = 'x'
 
+const contentModal = document.createElement('div');
+
 ModalDiv.appendChild(buttonCloseModal)
+ModalDiv.appendChild(contentModal)
 
 
 bgModalDiv.appendChild(ModalDiv);
@@ -188,11 +191,49 @@ function FunGin(arr){
             comContentBox2Buy.style.cursor = 'pointer'
         //style css
         comContentBox2Buy.addEventListener('click', function() {
-            // ModalDiv
-            const KarzinaComponentTitleProduct = document.createElement('h6');
+            // Product => ModalDiv
+            const TovarInKarziDiv = document.createElement('div');
+
+            const KarzinaComponentImgProduct = document.createElement('img');
+            KarzinaComponentImgProduct.src = el.img
+            KarzinaComponentImgProduct.alt = 'Product'
+            const KarzinaComponentTitleProduct = document.createElement('h4');
             KarzinaComponentTitleProduct.textContent = el.title;
 
-            ModalDiv.appendChild(KarzinaComponentTitleProduct)
+            const leftComponentKarzina = document.createElement('div');
+
+            const KarzinaComponentPriceProduct = document.createElement('p');
+            KarzinaComponentPriceProduct.textContent = `Price: ${el.price}$`;
+
+            const buttonDeleteKarzina = document.createElement('button');
+            buttonDeleteKarzina.textContent = 'Delete'
+
+            leftComponentKarzina.appendChild(KarzinaComponentImgProduct) 
+            leftComponentKarzina.appendChild(KarzinaComponentTitleProduct)
+            TovarInKarziDiv.appendChild(leftComponentKarzina)
+            TovarInKarziDiv.appendChild(KarzinaComponentPriceProduct)
+            TovarInKarziDiv.appendChild(buttonDeleteKarzina)
+
+            contentModal.appendChild(TovarInKarziDiv)
+            //style css
+                TovarInKarziDiv.style.width = '400px'
+                TovarInKarziDiv.style.height = '70px'
+                TovarInKarziDiv.style.background = '#fff'
+                TovarInKarziDiv.style.display = 'flex'
+                TovarInKarziDiv.style.alignItems = 'center'
+                TovarInKarziDiv.style.justifyContent = 'space-between'
+                TovarInKarziDiv.style.borderRadius = '7px'
+                
+                
+                leftComponentKarzina.style.display = 'flex'
+                leftComponentKarzina.style.alignItems = 'center'
+
+
+                KarzinaComponentImgProduct.style.width = '50px'
+
+                buttonDeleteKarzina.style.margin = '0 20px'
+                buttonDeleteKarzina.style.cursor = 'pointer'
+            //style css
         })
         
     })
@@ -377,7 +418,20 @@ ModalDiv.style.backdropFilter = 'blur(20px)'
 ModalDiv.style.height = '400px'
 ModalDiv.style.width = '500px'
 ModalDiv.style.position = 'relative'
+ModalDiv.style.display = 'flex'
+ModalDiv.style.alignItems = 'center'
+ModalDiv.style.justifyContent = 'center'
+ModalDiv.style.flexDirection = 'column'
 
+contentModal.style.maxWidth = '430px'
+contentModal.style.width = '100%'
+contentModal.style.height = '300px'
+contentModal.style.display = 'flex'
+contentModal.style.flexDirection = 'column'
+contentModal.style.gap = '7px 0'
+contentModal.style.alignItems = 'center'
+contentModal.style.justifyContent = 'top'
+contentModal.style.overflowY = 'scroll'
 
 buttonCloseModal.style.position = 'absolute'
 buttonCloseModal.style.top = '10px'
