@@ -581,7 +581,6 @@ box3FooterDiv.style.justifyContent = 'center'
 contentBox3FooterDiv.style.maxWidth = '820px'
 contentBox3FooterDiv.style.width = '100%'
 contentBox3FooterDiv.style.height = '500px'
-contentBox3FooterDiv.style.border = '2px solid'
 contentBox3FooterDiv.style.display = 'flex'
 contentBox3FooterDiv.style.flexDirection = 'column'
 contentBox3FooterDiv.style.alignItems = 'center'
@@ -597,6 +596,11 @@ form.style.color = '#fff'
 inUserName.style.padding = '5px 40px 5px 10px'
 inUserEmail.style.padding = '5px 40px 5px 10px'
 inUserPassword.style.padding = '5px 40px 5px 10px'
+
+submitBtn.style.fontSize = '16px'
+submitBtn.style.marginTop = '16px'
+submitBtn.style.padding = '7px 15px'
+submitBtn.style.cursor = 'pointer'
 
 //style css
 
