@@ -340,9 +340,7 @@ style.innerHTML = `
 document.head.appendChild(style);
 
 const box3FooterDiv = document.createElement('div');
-
-
-
+root.appendChild(box3FooterDiv)
 
 
 // style css
@@ -464,7 +462,7 @@ buttonAi.style.fontSize = '20px'
 buttonAi.style.cursor = 'pointer'
 
 box2Div.style.width = '100%'
-box2Div.style.height = '100vh'
+box2Div.style.minHeight = '100vh'
 
 titleBox2.style.width = '150px'
 titleBox2.style.color = '#3C4043'
@@ -481,11 +479,12 @@ contentBox2Div.style.justifyContent = 'center'
 contentBox2Div.style.flexWrap = 'wrap'
 contentBox2Div.style.gap = '40px 20px'
 
-box3FooterDiv.style.height = '40vh'
+box3FooterDiv.style.height = '70vh'
 box3FooterDiv.style.width = '100%'
 box3FooterDiv.style.background = '#333'
-box3FooterDiv.style.position = 'absolute'
-box3FooterDiv.style.bottom = '0'
+box3FooterDiv.style.margin = '0 auto'
+box3FooterDiv.style.marginTop = '20vh'
+
 
 
 
