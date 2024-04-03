@@ -9,20 +9,16 @@ const aaDiv = document.createElement('div');
 aaDiv.classList.add('aa');
 
 const catalogLink = document.createElement('a');
-catalogLink.href = '#';
+catalogLink.href = '#box2';
 catalogLink.textContent = 'Каталог';
 
-const rulesLink = document.createElement('a');
-rulesLink.href = '#';
-rulesLink.textContent = 'Правила использования';
 
 const contactsLink = document.createElement('a');
-contactsLink.href = '#';
+contactsLink.href = '#contact';
 contactsLink.textContent = 'Контакты';
 
 
 aaDiv.appendChild(catalogLink);
-aaDiv.appendChild(rulesLink);
 aaDiv.appendChild(contactsLink);
 
 
@@ -51,6 +47,7 @@ root.appendChild(menuDiv);
 
 const box1Div = document.createElement('div');
 box1Div.classList.add('box1');
+box1Div.id = 'box1';
 
 const contentBox1Div = document.createElement('div');
 box1Div.appendChild(contentBox1Div)
@@ -106,6 +103,7 @@ buttonCloseModal.addEventListener('click', function() {
 })
 
 const box2Div = document.createElement('div');
+box2Div.id = 'box2';
 
 root.appendChild(box2Div)
 
@@ -207,8 +205,6 @@ function FunGin(arr){
 
             const buttonDeleteKarzina = document.createElement('button');
             buttonDeleteKarzina.textContent = 'Delete';
-          
-
 
             leftComponentKarzina.appendChild(KarzinaComponentImgProduct) 
             leftComponentKarzina.appendChild(KarzinaComponentTitleProduct)
@@ -218,9 +214,13 @@ function FunGin(arr){
 
             contentModal.appendChild(TovarInKarziDiv)
 
+            // delete button in ModalDiv
             buttonDeleteKarzina.addEventListener('click', function(){
                 TovarInKarziDiv.style.transform = 'scale(0.8) translateY(-100px)'
                 TovarInKarziDiv.style.transition = ' all 0.1s linear'
+                TovarInKarziDiv.style.filter = 'brightness(0.7)'
+                TovarInKarziDiv.style.position = 'relative'
+                TovarInKarziDiv.style.zIndex = '-1'
                 setTimeout(() => contentModal.removeChild(TovarInKarziDiv), 200)
             })
             //style css
@@ -246,11 +246,6 @@ function FunGin(arr){
         
     })
 }
-
-
-
-
-//---------------------голосовой помошник
 
 const buttonAi = document.createElement('button');
 buttonAi.textContent = 'AI'
@@ -342,13 +337,109 @@ document.head.appendChild(style);
 const box3FooterDiv = document.createElement('div');
 root.appendChild(box3FooterDiv)
 
+const contentBox3FooterDiv = document.createElement('div')
+box3FooterDiv.appendChild(contentBox3FooterDiv)
+
+ var form = document.createElement("form");
+ form.setAttribute("method", "post");
+ form.setAttribute("action", "https://126b63f3395fce52.mokky.dev/user");
+
+// UserEmail
+ var labelInUserName = document.createElement("label");
+ labelInUserName.setAttribute("for", "UserName");
+ labelInUserName.textContent = "Your Name";
+ form.appendChild(labelInUserName);
+
+ var inUserName = document.createElement("input");
+ inUserName.setAttribute("type", "text");
+ inUserName.setAttribute("placeholder", "Your Name...");
+ inUserName.setAttribute("id", "UserName");
+ inUserName.setAttribute("name", "UserName");
+ form.appendChild(inUserName);
+
+ // UserEmail
+ var labelInUserEmail = document.createElement("label");
+ labelInUserEmail.setAttribute("for", "UserEmail");
+ labelInUserEmail.textContent = "Your Email";
+ form.appendChild(labelInUserEmail);
+
+ var inUserEmail = document.createElement("input");
+ inUserEmail.setAttribute("type", "text");
+ inUserEmail.setAttribute("placeholder", "Your Email...");
+ inUserEmail.setAttribute("id", "UserEmail");
+ inUserEmail.setAttribute("email", "UserEmail");
+ form.appendChild(inUserEmail);
+
+  // UserPassword
+  var labelInUserPassword = document.createElement("label");
+  labelInUserPassword.setAttribute("for", "UserPassword");
+  labelInUserPassword.textContent = "Your Password";
+  form.appendChild(labelInUserPassword);
+ 
+  var inUserPassword = document.createElement("input");
+  inUserPassword.setAttribute("type", "password");
+  inUserPassword.setAttribute("placeholder", "Your Password...");
+  inUserPassword.setAttribute("id", "UserPassword");
+  inUserPassword.setAttribute("Password", "UserPassword");
+  form.appendChild(inUserPassword);
+
+
+ var submitBtn = document.createElement("input");
+ submitBtn.setAttribute("type", "submit");
+ submitBtn.setAttribute("value", "Отправить Свои данные");
+ form.appendChild(submitBtn);
+
+
+ form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+     var UserName = document.getElementById("UserName").value;
+     var UserEmail = document.getElementById("UserEmail").value;
+     var UserPassword = document.getElementById("UserPassword").value;
+
+     var formData = {
+        UserName: UserName,
+        UserEmail: UserEmail,
+        UserPassword: UserPassword
+     };
+
+     var requestOptions = {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json'
+         },
+         body: JSON.stringify(formData)
+     };
+
+     fetch('https://126b63f3395fce52.mokky.dev/user', requestOptions)
+         .then(response => {
+             if (!response.ok) {
+                 throw new Error('Ошибка сети');
+             }
+             return response.json();
+         })
+         .then(data => {
+             console.log(data);
+         })
+         .catch(error => {
+             console.error('Произошла ошибка:', error);
+         });
+
+        setTimeout(() => {location.reload()}, 1000)
+         
+ });
+
+contentBox3FooterDiv.appendChild(form);
+box3FooterDiv.id = 'contact'
+
 
 // style css
-
+document.getElementById('html').style.scrollBehavior = 'smooth'
 
 document.body.style.margin = 0;
 document.body.style.padding = 0;
 document.body.style.paddingTop = '56px';
+
 
 document.body.style.fontFamily = '"Roboto", sans-serif'
 
@@ -402,8 +493,7 @@ aaDiv.style.gap = '20px'
 
 catalogLink.style.textDecoration = 'none'
 catalogLink.style.color = '#000'  
-rulesLink.style.textDecoration = 'none'
-rulesLink.style.color = '#000'      
+      
 contactsLink.style.textDecoration = 'none'
 contactsLink.style.color = '#000'
 
@@ -437,9 +527,9 @@ contentModal.style.width = '100%'
 contentModal.style.height = '300px'
 contentModal.style.display = 'flex'
 contentModal.style.flexDirection = 'column'
-contentModal.style.gap = '7px 0'
 contentModal.style.alignItems = 'center'
 contentModal.style.justifyContent = 'top'
+contentModal.style.gap = '7px 0'
 contentModal.style.overflowY = 'scroll'
 
 
@@ -464,10 +554,10 @@ buttonAi.style.cursor = 'pointer'
 box2Div.style.width = '100%'
 box2Div.style.minHeight = '100vh'
 
-titleBox2.style.width = '150px'
+titleBox2.style.width = '250px'
 titleBox2.style.color = '#3C4043'
 titleBox2.style.margin = '50px auto'
-titleBox2.style.fontSize = '16px'
+titleBox2.style.fontSize = '26px'
 titleBox2.style.fontWeight = '400'
 
 contentBox2Div.style.maxWidth = '1280px'
@@ -484,9 +574,29 @@ box3FooterDiv.style.width = '100%'
 box3FooterDiv.style.background = '#333'
 box3FooterDiv.style.margin = '0 auto'
 box3FooterDiv.style.marginTop = '20vh'
+box3FooterDiv.style.display = 'flex'
+box3FooterDiv.style.alignItems = 'center'
+box3FooterDiv.style.justifyContent = 'center'
 
+contentBox3FooterDiv.style.maxWidth = '820px'
+contentBox3FooterDiv.style.width = '100%'
+contentBox3FooterDiv.style.height = '500px'
+contentBox3FooterDiv.style.border = '2px solid'
+contentBox3FooterDiv.style.display = 'flex'
+contentBox3FooterDiv.style.flexDirection = 'column'
+contentBox3FooterDiv.style.alignItems = 'center'
+contentBox3FooterDiv.style.justifyContent = 'center'
 
+form.style.display = 'flex'
+form.style.flexDirection = 'column'
+form.style.alignItems = 'center'
+form.style.justifyContent = 'center'
+form.style.gap = '10px'
+form.style.color = '#fff'
 
+inUserName.style.padding = '5px 40px 5px 10px'
+inUserEmail.style.padding = '5px 40px 5px 10px'
+inUserPassword.style.padding = '5px 40px 5px 10px'
 
 //style css
 

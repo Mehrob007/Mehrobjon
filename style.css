@@ -9,6 +9,10 @@ body{
     backdrop-filter: blur(20px);
     transition: all 2s linear;
     transform: scale(0.8) translateY(-50px);
+    filter: brightness(0.7);
+    position: relative;
+    z-index: -1;
+    scroll-behavior: smooth;
 }
 /* .box1{
     max-width: 1280px;
